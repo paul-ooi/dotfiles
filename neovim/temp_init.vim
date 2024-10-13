@@ -1,0 +1,11 @@
+set number
+set hlsearch
+set ic
+set autoindent
+set wrap
+set shiftwidth=4
+set fixeol
+set ruler
+set preserveindent
+set visualbell
+set wrapscan
