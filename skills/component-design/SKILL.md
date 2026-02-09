@@ -1,12 +1,7 @@
 ---
-triggers:
-  - component
-  - design system
-  - props
-  - slots
-  - composition
-  - compound component
-  - headless
+name: component-design
+description: Designs accessible, reusable component architectures for web UI libraries and design systems. Covers component tiers, API design, compound components, headless patterns, composition, and slots. Use when building components, design systems, defining props interfaces, or structuring compound and headless components.
+compatibility: Designed for Claude Code.
 ---
 
 # Component Design — Accessible, Reusable Component Architecture

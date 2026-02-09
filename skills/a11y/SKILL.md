@@ -1,13 +1,7 @@
 ---
-triggers:
-  - accessibility
-  - a11y
-  - WCAG
-  - ARIA
-  - screen reader
-  - keyboard navigation
-  - focus management
-  - alt text
+name: a11y
+description: Builds accessible web interfaces conforming to WCAG 2.2 Level AA. Covers semantic HTML, ARIA patterns, keyboard navigation, focus management, color contrast, forms, media, and screen reader support. Use when working on accessibility, a11y, WCAG compliance, ARIA attributes, keyboard navigation, focus management, or alt text.
+compatibility: Designed for Claude Code. Uses chrome-devtools MCP for browser verification.
 ---
 
 # Accessibility Skill — WCAG 2.2 AA Compliance

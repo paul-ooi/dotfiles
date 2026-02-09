@@ -1,5 +1,12 @@
 # Accessibility Testing Procedures
 
+## Contents
+- Manual Testing Checklist (Keyboard, Screen Reader, Visual, Motion)
+- Automated Tools (Lighthouse, Color Contrast)
+- Browser Verification with MCP Tools
+- Testing Priority
+- Common Issues by Component Type
+
 ## Manual Testing Checklist
 
 ### Keyboard Navigation Test
@@ -43,53 +50,6 @@ Verify:
 - Verify no information is lost when animations are disabled
 
 ## Automated Tools
-
-### axe-core (In-Browser)
-The most reliable automated accessibility checker. Catches ~30-40% of WCAG issues.
-
-**Via browser devtools (evaluate_script):**
-```javascript
-// Inject axe-core if not present, then run
-async () => {
-  if (!window.axe) {
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.9.1/axe.min.js';
-    document.head.appendChild(script);
-    await new Promise(resolve => script.onload = resolve);
-  }
-  const results = await axe.run();
-  return {
-    violations: results.violations.map(v => ({
-      id: v.id,
-      impact: v.impact,
-      description: v.description,
-      help: v.help,
-      helpUrl: v.helpUrl,
-      nodes: v.nodes.map(n => ({
-        html: n.html,
-        target: n.target,
-        failureSummary: n.failureSummary
-      }))
-    })),
-    passes: results.passes.length,
-    incomplete: results.incomplete.length
-  };
-}
-```
-
-**Via Playwright (@axe-core/playwright):**
-```javascript
-import { test, expect } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
-
-test('page has no accessibility violations', async ({ page }) => {
-  await page.goto('/');
-  const results = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag22aa'])
-    .analyze();
-  expect(results.violations).toEqual([]);
-});
-```
 
 ### Lighthouse Accessibility Audit
 Built into Chrome DevTools. Runs axe-core plus additional checks. Score of 100 does NOT mean fully accessible — manual testing is still required.

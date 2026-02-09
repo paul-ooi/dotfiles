@@ -1,13 +1,6 @@
 ---
-triggers:
-  - refactor
-  - clean code
-  - SOLID
-  - DRY
-  - naming
-  - code quality
-  - code review
-  - single responsibility
+name: clean-code
+description: Writes maintainable, readable code following SOLID principles, DRY, and clean code practices. Covers naming conventions, function design, error handling, file organization, and immutability. Use when refactoring, reviewing code quality, applying single responsibility, or improving naming and structure.
 ---
 
 # Clean Code — SOLID / DRY / Code Quality

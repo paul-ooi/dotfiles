@@ -1,5 +1,17 @@
 # Component API Patterns
 
+## Contents
+- Prop Spread Pattern
+- Polymorphic "as" Pattern
+- Slot Pattern
+- Render Prop / Function-as-Child
+- Controlled/Uncontrolled Dual Pattern
+- Context Pattern for Compound Components
+- Size Variants Pattern
+- Loading State Pattern
+- Error State Pattern for Form Fields
+- Visually Hidden Utility
+
 ## Prop Spread Pattern
 
 Forward unknown props to the root HTML element so consumers can add `aria-*`, `data-*`, event handlers, etc.:

@@ -1,17 +1,7 @@
 ---
-triggers:
-  - test
-  - testing
-  - vitest
-  - playwright
-  - fixture
-  - mock
-  - test suite
-  - unit test
-  - e2e
-  - integration test
-  - test setup
-  - spec
+name: testing
+description: Provides test strategy, patterns, and tooling for web projects using Vitest and Playwright. Covers test philosophy, fixture and mock management, page object model, accessible selectors, and axe-core integration. Use when writing tests, setting up test suites, creating fixtures or mocks, or working with unit tests, e2e tests, integration tests, or specs.
+compatibility: Designed for Claude Code. Uses chrome-devtools MCP for browser verification.
 ---
 
 # Testing Skill — Vitest & Playwright
@@ -97,53 +87,7 @@ Before creating inline test data or mocks:
 2. **Extend existing fixtures** rather than duplicating — use factory override patterns
 3. **Create new shared fixtures** when a pattern appears 2+ times
 
-### Factory Pattern
-
-```typescript
-// test/fixtures/user.factory.ts
-interface UserOverrides {
-  id?: string;
-  name?: string;
-  email?: string;
-  role?: 'admin' | 'member' | 'viewer';
-}
-
-export function createUser(overrides: UserOverrides = {}): User {
-  return {
-    id: overrides.id ?? crypto.randomUUID(),
-    name: overrides.name ?? 'Test User',
-    email: overrides.email ?? 'test@example.com',
-    role: overrides.role ?? 'member',
-    createdAt: new Date().toISOString(),
-    ...overrides,
-  };
-}
-
-// Usage in tests
-const admin = createUser({ role: 'admin' });
-const viewer = createUser({ role: 'viewer', name: 'View Only' });
-```
-
-### Mock Organization
-
-```
-test/
-  fixtures/
-    user.factory.ts      # Data factories
-    api-responses.ts      # Common API response shapes
-  helpers/
-    render.ts             # Custom render with providers
-    setup.ts              # Global test setup
-__mocks__/
-  api-client.ts           # Module mock for API client
-  storage.ts              # Module mock for storage
-```
-
-**Rules:**
-- Centralize mocks — avoid duplicating mock implementations across test files
-- Factories for test data — never hardcode objects inline when a factory exists
-- Avoid over-mocking — use real implementations when they're fast and deterministic
-- Reset state between tests — `beforeEach`/`afterEach` for cleanup
+See `references/fixture-patterns.md` for factory functions, API response fixtures, mock implementations, and builder patterns.
 
 ### When to Mock
 
@@ -258,6 +202,8 @@ Aim for meaningful coverage, not 100%:
 
 ## Playwright — E2E & Accessibility Testing
 
+See `references/playwright-a11y.md` for comprehensive accessibility testing patterns including axe-core setup, keyboard navigation tests, color scheme testing, responsive a11y checks, and reusable fixtures.
+
 ### Page Object Model
 
 ```typescript
@@ -353,20 +299,9 @@ test('home page has no accessibility violations', async ({ page }) => {
     .analyze();
   expect(results.violations).toEqual([]);
 });
-
-// Test after interaction
-test('modal is accessible when open', async ({ page }) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Open settings' }).click();
-  await expect(page.getByRole('dialog')).toBeVisible();
-
-  const results = await new AxeBuilder({ page })
-    .include('[role="dialog"]')
-    .withTags(['wcag2a', 'wcag2aa', 'wcag22aa'])
-    .analyze();
-  expect(results.violations).toEqual([]);
-});
 ```
+
+For scoped tests, post-interaction checks, keyboard navigation tests, color scheme testing, and reusable a11y fixtures, see `references/playwright-a11y.md`.
 
 ### Visual Regression
 
@@ -376,12 +311,6 @@ test('landing page matches snapshot', async ({ page }) => {
   await expect(page).toHaveScreenshot('landing.png', {
     maxDiffPixelRatio: 0.01,
   });
-});
-
-// Component-level
-test('button variants render correctly', async ({ page }) => {
-  await page.goto('/storybook/button');
-  await expect(page.getByTestId('button-group')).toHaveScreenshot('buttons.png');
 });
 ```
 
@@ -496,20 +425,6 @@ Use `list_console_messages` to find errors/warnings tests should catch:
 - React warnings about invalid props
 - Unhandled promise rejections
 - Missing resource errors
-
-## MCP Tool Integration
-
-When available, use specialized MCP tools:
-
-### Playwright MCP (when available)
-- Run specific test suites or individual tests
-- Manage browser contexts for e2e testing
-- Execute Playwright test commands
-
-### Vitest MCP (when available)
-- Run unit/integration test suites
-- Watch mode for active development
-- Check coverage reports
 
 ## Code Review Checklist for Tests
 

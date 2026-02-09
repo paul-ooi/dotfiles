@@ -1,5 +1,19 @@
 # ARIA Patterns Reference
 
+## Contents
+- The Cardinal Rule: Prefer Native HTML
+- Disclosure (Show/Hide)
+- Modal Dialog
+- Tabs
+- Menu / Menu Button
+- Combobox (Autocomplete)
+- Accordion
+- Tooltip
+- Alert / Status Messages
+- Tree View
+- Switch (Toggle)
+- General ARIA Properties Quick Reference
+
 ## The Cardinal Rule: Prefer Native HTML
 
 **ARIA is a last resort.** Before using any ARIA pattern below, verify that no native HTML element or combination of elements can achieve the same result. Native HTML gives you keyboard behavior, focus management, form participation, and screen reader semantics for free.

@@ -1,5 +1,12 @@
 # Color Scheme Tokens
 
+## Contents
+- Core Token Definitions (light and dark themes)
+- Token Naming Convention
+- Usage in Components
+- Extending Tokens
+- Contrast Requirements
+
 Complete token set for light and dark color schemes. All component styles should reference these tokens via `var(--color-*)` — never hardcode color values.
 
 ## Core Token Definitions

@@ -1,6 +1,6 @@
 # WCAG 2.2 AA Checklist
 
-Quick-reference checklist organized by principle. Each item maps to a WCAG 2.2 success criterion.
+Quick-reference checklist organized by principle. Each item maps to a WCAG 2.2 success criterion. Check quarterly if there are newer released versions of the WCAG spec and update this checklist accordingly.
 
 ## Perceivable
 

@@ -1,14 +1,7 @@
 ---
-triggers:
-  - CSS
-  - SCSS
-  - styling
-  - responsive
-  - media query
-  - dark mode
-  - color scheme
-  - layout
-  - animation
+name: css-styling
+description: Provides scalable, maintainable CSS architecture with responsive design, color scheme support, and performance-conscious animations. Covers CSS Modules, mobile-first responsive design, light/dark mode, layout patterns, logical properties, and typography. Use when styling, writing CSS/SCSS, implementing responsive layouts, media queries, dark mode, or animations.
+compatibility: Designed for Claude Code. Uses chrome-devtools MCP for browser verification.
 ---
 
 # CSS Architecture & Responsive Design
